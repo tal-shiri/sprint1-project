@@ -12,16 +12,33 @@
   <h1>Game</h1>
   <div class="display-container">
     <span class="lives">❤️❤️❤️</span> <span>💡💡💡</span>
-  </div>
+    <div class="button-levels">
+      <button onclick="onChangeLevel(this)">Beginner</button>
+      <button onclick="onChangeLevel(this)">Intermediate</button>
+      <button onclick="onChangeLevel(this)">Expert</button>
+      <button onclick="onChangeLevel(this)">Custom</button>
+      <div class="custom-pop">
+        <p>coloms</p>
+        <input type="text">
+        <p>height</p>
+        <input type="text">
+        <p>Mines</p>
+        <input type="text">
+      </div>
 
 
-  <button class="smiley-btn" onclick="onRestartGame()">😃</button>
-  <div class="board-container"></div>
+    </div>
 
 
-  <footer>Tal Shiri</footer>
-  <script src="js/main.js"></script>
-  <script src="js/utils.js"></script>
+    <button class="smiley-btn" onclick="onRestartGame()">😃</button>
+    <div class="board-container"></div>
+
+    <div class="game-over">
+      <span></span>
+    </div>
+    <footer>Tal Shiri</footer>
+    <script src="js/main.js"></script>
+    <script src="js/utils.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+* {}
+
 body {
   background-color: lightpink;
   text-align: center;
@@ -31,6 +33,33 @@ span {
   background-color: rgb(246, 111, 134);
 }
 
-/* .content {
+.game-over {
   display: none;
-} */
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  margin: auto;
+  /* margin-left: 275px; */
+  /* margin-bottom: 200px; */
+}
+
+.button-levels button {
+  background-color: lightblue;
+  padding: 10px;
+  margin: 5px;
+  border: solid white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.custom-pop {
+  /* background-color: blue; */
+  border: 3px solid white;
+  width: 200px;
+  height: 200px;
+  margin-left: 900px;
+}
+
+input {
+  width: 50px;
+}

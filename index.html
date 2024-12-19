@@ -9,36 +9,85 @@
 </head>
 
 <body onload="onInit()">
-  <h1>Game</h1>
+  <h1>MINES WEEPER</h1>
   <div class="display-container">
-    <span class="lives">❤️❤️❤️</span> <span>💡💡💡</span>
-    <div class="button-levels">
-      <button onclick="onChangeLevel(this)">Beginner</button>
-      <button onclick="onChangeLevel(this)">Intermediate</button>
-      <button onclick="onChangeLevel(this)">Expert</button>
-      <button onclick="onChangeLevel(this)">Custom</button>
-      <div class="custom-pop">
-        <p>coloms</p>
-        <input type="text">
-        <p>height</p>
-        <input type="text">
-        <p>Mines</p>
-        <input type="text">
-      </div>
+    <span class="lives">❤️ ❤️ ❤️ </span>
+    <span class="hint" onclick="onPressHint(this)">💡</span>
+    <span class="hint" onclick="onPressHint(this)">💡</span>
+    <span class="hint" onclick="onPressHint(this)">💡</span>
+    <h2>Timer</h2>
+    <div class="timer">0.000</div>
+
+  </div>
 
 
+  <button class="smiley-btn" onclick="onRestartGame()">😎</button>
+  <div class="board-container"></div>
+
+  <div class="game-over">
+    <span></span>
+  </div>
+
+  <div class="safe-click-container">
+    <button class="safe-click" onclick="onSafeClick()">SAFE BUTTON</button> <br>
+    <span>Safe Clicks left: <span class="click-count">3</span></span>
+  </div>
+
+  <div class="button-levels">
+    <button onclick="onChangeLevel(this)">Beginner</button>
+    <button onclick="onChangeLevel(this)">Intermediate</button>
+    <button onclick="onChangeLevel(this)">Expert</button>
+    <button onclick="onChangeLevel(this)">Custom</button>
+    <div class="custom-pop">
+      <span>
+        coloms<input type="number" class="coloms">
+        <span>
+          height <input type="number" class="height">
+        </span>
+        <span>
+          Mines<input type="number" class="mines">
+        </span>
+      </span>
+      <button class="submit-btn" onclick="submitButton()">SUBMIT 👻</button>
     </div>
+  </div>
 
+  <button class="register-btn" onclick="onRegister()">REGISTER</button>
+  <div class="register-pop-up">
+    <span>Enter Name:</span>
+    <input type="text" class="username">
+    <button class="confrim-btn" onclick="confrimButton()">CONFRIM</button>
+  </div>
 
-    <button class="smiley-btn" onclick="onRestartGame()">😃</button>
-    <div class="board-container"></div>
+  <table class="win-table">
+    <thead>
+      <tr>
+        <th>Expert</th>
+        <th>Intermediate</th>
+        <th>Beginner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="expert">
 
-    <div class="game-over">
-      <span></span>
-    </div>
-    <footer>Tal Shiri</footer>
-    <script src="js/main.js"></script>
-    <script src="js/utils.js"></script>
+        </td>
+
+        <td class="intermediate">
+
+        </td>
+
+        <td class="beginner">
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>Tal Shiri</footer>
+  <script src="js/main.js"></script>
+  <script src="js/utils.js"></script>
 </body>
 
 </html>

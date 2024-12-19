@@ -50,7 +50,10 @@ function renderBoard(board, selector) {
         strHTML += '<tr>'
         for (var j = 0; j < board[0].length; j++) {
             var cell = board[i][j]
-            const cellContent = (cell.isMine) ? MINE : ''
+            var cellContent = (cell.isMine) ? MINE : ''
+            if (cellContent === '') {
+                cellContent = (cell.minesAroundCount !== 0) ? cell.minesAroundCount : ''
+            }
             const className = `cell cell-${i}-${j}`
 
             strHTML += `<td class="${className}" onclick="onCellClicked(this,${i},${j})" oncontextmenu="onCellMarked(this,event,${i},${j})" ><span style="display: none;">${cellContent}</span></td>`
@@ -111,7 +114,7 @@ function findEmptyPos(gBoard) {
     }
 
     if (!emptyPoss.length) {
-        console.log('sss')
+
         return
     }
 
@@ -135,4 +138,61 @@ function getRandomColor() {
 
 function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function updateTimer() {
+    const elapsedTime = Date.now() - gStartTime
+    const elTimer = document.querySelector('.timer')
+
+    elTimer.innerText = (elapsedTime / 1000).toFixed(3)
+}
+
+function stopTimer() {
+    clearInterval(gTimerInterval) // Stops the timer
+    const elTimer = document.querySelector('.timer')
+    gGame.secsPassed = elTimer.innerText
+    setTimeout(() => {
+        elTimer.innerText = "0.000"
+    }, 10000)
+    isTimeOn = false
+}
+
+function restartTimer() {
+    clearInterval(gTimerInterval) // Clear the existing timer
+
+    gStartTime = Date.now() // Reset start time
+    gTimerInterval = setInterval(updateTimer, 10) // Restart the timer
+}
+
+function renderTableWinners() {
+    var tabaleWin
+}
+
+function findSafePos(gBoard) {
+    var emptyPoss = [] // [{i:0,j:0} , {i:0,j:1}]
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 1; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j]
+            // console.log('cell:', cell) // ''
+
+            if (!cell.isMine && !cell.isShown && !cell.isMarked) {
+                var pos = { i: i, j: j }
+                emptyPoss.push(pos)
+                console.log()
+            }
+        }
+    }
+
+    if (!emptyPoss.length) {
+
+        return
+    }
+
+
+    // console.log('emptyPoss:', emptyPoss)
+    var randIdx = getRandomIntInclusive(0, emptyPoss.length - 1)
+    var emptyPos = emptyPoss[randIdx]
+
+    return emptyPos
 }

@@ -1,4 +1,6 @@
-* {}
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: lightpink;
@@ -17,20 +19,42 @@ table {
   height: 40px;
   font-size: 1.5em;
   border: 1px solid rgb(20, 18, 18);
+  cursor: pointer;
 
 }
 
 .smiley-btn {
   margin-top: 40px;
+  background-color: transparent;
+  border: 3px dashed wheat;
+  font-size: 25px;
+  cursor: pointer;
 }
 
+.smiley-btn:hover {
+  content: 'tt';
+}
+
+/* .smiley-btn-bomb::before {
+  content: "🤯";
+}
+
+.smiley-btn::before {
+  content: "😀";
+}
+
+.smiley-btn:hover::before {
+  content: "😎";
+} */
+
 span {
-  font-size: 25px;
+  font-size: 16px;
   /* padding: 50px; */
 }
 
 .marked-cell {
   background-color: rgb(246, 111, 134);
+  cursor: not-allowed;
 }
 
 .game-over {
@@ -52,14 +76,139 @@ span {
   cursor: pointer;
 }
 
+.display-container {
+  padding: 15px;
+}
+
 .custom-pop {
-  /* background-color: blue; */
+  display: none;
+  opacity: 0.8;
+  font-size: 10px;
   border: 3px solid white;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 75px;
   margin-left: 900px;
+  padding: 10px;
+}
+
+.custom-pop span {
+  padding: 2px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 10px;
 }
 
 input {
   width: 50px;
+}
+
+.custom-pop .submit-btn {
+  background-color: rgb(210, 150, 230);
+  padding: 5px;
+  margin: 7px;
+  border: solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.lives {
+  font-size: 25px;
+  margin-right: 1.25em;
+  display: inline-block;
+  border: 2px solid white;
+  padding: 5px;
+}
+
+.hint {
+  font-size: 25px;
+  display: inline-block;
+  border: 2px solid white;
+  padding: 5px;
+  cursor: pointer;
+
+
+}
+
+.hinted {
+  background-color: aquamarine;
+}
+
+.timer {
+  width: 150px;
+  border: solid white;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 45%;
+  font-family: Arial, sans-serif;
+}
+
+.win-table,
+th,
+td {
+  width: 1000px;
+  border: 1px solid white;
+
+
+}
+
+footer {
+  padding: 30px;
+}
+
+.safe-click-container {
+  margin-bottom: 10px;
+
+}
+
+.safe-click {
+  color: beige;
+  background-color: cornflowerblue;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.register-btn {
+  background-color: rgb(210, 150, 230);
+  padding: 5px;
+  margin: 7px;
+  border: solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.register-pop-up {
+  display: none;
+  background-color: rgb(210, 150, 230);
+  font-size: 15px;
+  padding: 5px;
+  margin-left: 40%;
+  width: 300px;
+  border: solid white;
+  font-size: 1px;
+}
+
+.register-pop-up span {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.register-pop-up input {
+  height: auto;
+  width: 100px;
+}
+
+.confrim-btn {
+  background-color: rgb(182, 73, 175);
+  color: aliceblue;
+  padding: 5px;
+  margin: 7px;
+  border: solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 10px;
 }

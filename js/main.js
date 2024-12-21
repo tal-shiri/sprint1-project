@@ -18,7 +18,11 @@ let gTimerInterval
 var onBtnHintToRemove
 var isTimeOn = false
 var isHintOn = false
-var gCurrUsername = ''
+
+var user = {
+  userName: '',
+  level: ''
+}
 
 
 
@@ -40,7 +44,7 @@ function onInit() {
   gBoard = createBoard(4, 4)
   stopTimer()
   renderBoard(gBoard, '.board-container')
-
+  // updateTableStorge()
   console.log(gBoard)
   //console.log(findEmptyPos(gBoard))
   //console.log(setMinesNegsCount(gBoard, 2, 2))
@@ -101,9 +105,10 @@ function onCellClicked(elCell, i, j) {
   }
 
 
-  //console.log(elCell)
+  console.log(elCell)
 
   elSpanContent.style.display = 'block'
+  elCell.style.backgroundColor = 'rgb(246, 111, 134)'
   elCell.classList.add('marked-cell')
   cell.isShown = true
   checkGameOver()
@@ -146,9 +151,10 @@ function onRestartGame() {
 }
 
 function onCellMarked(elCell, ev, i, j) {
+
   ev.preventDefault()
   var cell = gBoard[i][j]
-  if (cell.isMine && cell.isShown) return
+  if (cell.isShown) return
   elSpanContent = elCell.querySelector(`span`)
   elSpanContent.style.display = 'block'
 
@@ -169,8 +175,8 @@ function onCellMarked(elCell, ev, i, j) {
 }
 
 function checkWin() {
-  console.log('count:' + gGame.shownCount)
-  console.log('marked' + gGame.markedCount)
+  // console.log('count:' + gGame.shownCount)
+  // console.log('marked' + gGame.markedCount)
 
 
   if (gUserLives === 3) {
@@ -258,6 +264,7 @@ function markNegcells(board, rowIdx, colIdx) {
       console.log(gGame.shownCount)
       currCell.isShown = true
       cell.classList.add('marked-cell')
+      cell.style.backgroundColor = 'rgb(246, 111, 134)'
       //if (currCell.minesAroundCount !== 0) {
       cellContent.style.display = 'block'
       //markNegcells(board, i, j)
@@ -430,37 +437,60 @@ function onSafeClick() {
   cellContent.style.display = 'block'
   cell.style.backgroundColor = 'orange'
   setTimeout(() => {
-    cellContent.style.display = 'none'
     cell.style.backgroundColor = 'lightpink'
+    cellContent.style.display = 'none'
 
   }, 2000)
+
+  console.log(cell)
 }
 
 function onRegister() {
-  document.querySelector('.register-pop-up').style.display = 'block'
+  if (!isRegisterBtnSelected) {
+    document.querySelector('.register-pop-up').style.display = 'block'
+    isRegisterBtnSelected = true
+  } else {
+    document.querySelector('.register-pop-up').style.display = 'none'
+    isRegisterBtnSelected = false
+
+  }
 
 }
 
 function confrimButton() {
-  gCurrUsername = document.querySelector('.username').value
+  user.userName = document.querySelector('.username').value
   document.querySelector('.register-pop-up').style.display = 'none'
+  document.querySelector('.username').value = ''
+
+
 
 }
 
 function onUpdateWinTable() {
+  if (user.userName === '') return
+  localStorage.setItem("lastname", user.userName);
+  localStorage.setItem("level", gGame.level);
+
   switch (gLevel.levelName) {
     case 'expert':
-      document.querySelector('.expert').innerText += `*${gCurrUsername}*  Time: ${gGame.secsPassed}\n`
+      document.querySelector('.expert').innerText += `*${user.userName}*  Time: ${gGame.secsPassed}\n`
+
       break;
     case 'intermediate':
-      document.querySelector('.intermediate').innerText += `*${gCurrUsername}*  Time: ${gGame.secsPassed}\n`
+      document.querySelector('.intermediate').innerText += `*${user.userName}*  Time: ${gGame.secsPassed}\n`
+
       break;
     case 'beginner':
-      document.querySelector('.beginner').innerText += `*${gCurrUsername}*  Time: ${gGame.secsPassed}\n`
+      document.querySelector('.beginner').innerText += `*${user.userName}* Time: ${gGame.secsPassed}\n`
       break;
 
     default:
       break;
   }
+}
+
+function updateTableStorge() {
+  console.log(localStorage.getItem("lastname"))
+  document.querySelector(gLevel.levelName).innerHTML = localStorage.getItem("lastname");
 }
 
